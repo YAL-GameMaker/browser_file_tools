@@ -144,6 +144,7 @@
 		openOther = gmlOther;
 		
 		if (!openBound) {
+			openBound = true;
 			openForm = document.createElement("form");
 			openForm.setAttribute("style", [
 				"position: absolute",

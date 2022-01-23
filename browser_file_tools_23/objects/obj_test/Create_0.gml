@@ -27,18 +27,5 @@ function handle(_data, _name, _type) {
 browser_paste_bind(handle);
 browser_drop_bind(handle);
 
-button_x = 0; button_y = 0;
-function button(_label) {
-	var _w = string_width(_label) + 8;
-	var _h = string_height(_label);
-	var _mx = mouse_x - button_x, _my = mouse_y - button_y;
-	var _over = (_mx >= 0 && _my >= 0 && _mx < _w && _my < _h);
-	draw_set_color(c_white);
-	draw_set_alpha(_over ? 1.0 : 0.9);
-	draw_rectangle(button_x, button_y, button_x + _w, button_y + _h, false);
-	draw_set_color(c_black);
-	draw_set_alpha(1.0);
-	draw_text(button_x + 4, button_y, _label);
-	button_y += _h + 4;
-	return _over && mouse_check_button_pressed(mb_left);
-}
+clickable_add(5, 5, sprite_get_tpe(spr_buttons, 0), "gmcallback_show_open_dlg", "", "");
+clickable_add(50, 5, sprite_get_tpe(spr_buttons, 1), "gmcallback_show_save_dlg", "", "");

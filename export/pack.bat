@@ -32,8 +32,8 @@ move /Y %name%-for-GMS2.3+.zip ../%name%-for-GMS2.3+.yymps
 cd ..
 
 cd ..\%name%_23
-cmd /C 7z a %name%-demo-for-GMS2.3+.yyz *
-move /Y %name%-demo-for-GMS2.3+.yyz ..\export\%name%-demo-for-GMS2.3+.yyz
+cmd /C 7z a %name%-demo-for-GMS2.3+.zip *
+move /Y %name%-demo-for-GMS2.3+.zip ..\export\%name%-demo-for-GMS2.3+.yyz
 cd ..\export
 
 pause
