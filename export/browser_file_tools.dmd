@@ -1,0 +1,54 @@
+```set template default.html```
+```set title browser_file_tools cheat sheet```
+```set autoapi ext```
+```set intro
+This is a "cheat sheet" for "browser_file_tools" extension by YellowAfterlife.  
+The extension can be found on [itch.io](https://yellowafterlife.itch.io/gamemaker-browser-file-tools).
+```
+#[browser_paste_bind(?handler_script, ?filter_script)->bool]() {
+	Binds a paste event handler. This also prevents Ctrl+C/Cmd+C/Shift+Insert presses from going to the game.
+	
+	`handler_script` can be a script/function taking the following arguments: --{
+	-	`data`: for pasted text this is the text itself while for other formats it'll be base64 string such as `"data:image/png;base64,..."`
+	-	`name`: name of the file pasted.\
+		If the name is unknown, this is `""`.\
+		For pasted text, this is `undefined`.\
+		(comparing it to `undefined` is how you figure out whether to decode base64)
+	-	`type`: [MIME type](https://en.wikipedia.org/wiki/Media_type) of whatever that you've got here.
+	}
+	
+	`filter_script` can be a script/function taking the following arguments: --{
+	-	`kind`: `"string"` for text or `"file"` for files.
+	-	`type`: MIME type of the item.
+	}
+	it can then return `true` or `false` based on whether you want to have it passed on to the `handler_script`.
+	Discarding unsupported files early can spare the page from loading files that you weren't going to process anyway.
+	
+	If the handler is omitted (`browser_paste_bind()`), unbinds the handler.
+}
+#[browser_drop_bind(?handler_script, ?filter_script)->bool]() {
+	Akin to above, but for allowing the user to drag and drop files onto the page.
+}
+#[browser_show_open_dialog(accept, multiselect, handler_script, ?filter_script)->bool]() {
+	Shows a file picker dialog and hands over the selected file(s) to the handler.
+	
+	`accept` is [as per MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)
+	(e.g. `".png,.jpg"` or `"image/*"`)
+	
+	If `multiselect` is `true`, allows multiple files to be selected.
+	
+	Handler/filter are in same format as above.
+}
+#[browser_show_save_dialog(buffer, name, ?type, ?size)]() {
+	Offers to save the contents of the given buffer as a file.
+	
+	`buffer` should contain the bytes to save.
+	
+	`name` is the suggested file name (note: the browser might adjust it as necessary).
+	
+	`type` is the MIME type (like with above).
+	
+	`size` is number of bytes to save (otherwise uses buffer size).
+	
+	For saving images in particular, see [Screenshot Save Dialog](https://yellowafterlife.itch.io/screenshot-save-dialog).
+}

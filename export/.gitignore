@@ -1,0 +1,8 @@
+browser_file_tools-for-GMS1/*
+
+browser_file_tools-for-GMS2/*
+!browser_file_tools-for-GMS2/assetpackage.yy
+
+browser_file_tools-for-GMS2.3+/*
+!browser_file_tools-for-GMS2.3+/browser_file_tools_23.yyp
+!browser_file_tools-for-GMS2.3+/metadata.json
